@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29503.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "CAGRA_ODS_SAICO", "CAGRA_ODS_SAICO.dtproj", "{6A4E0412-E3AA-4904-82B7-02CB46182EC6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6A4E0412-E3AA-4904-82B7-02CB46182EC6}.Development|Default.ActiveCfg = Development
+		{6A4E0412-E3AA-4904-82B7-02CB46182EC6}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F2320837-C9E3-4FD2-91EC-E1BC36FCD8F8}
+	EndGlobalSection
+EndGlobal
