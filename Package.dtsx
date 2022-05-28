@@ -12,8 +12,8 @@
   DTS:ObjectName="Package"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="28"
-  DTS:VersionGUID="{01731652-C9D9-4F20-BF4A-FEF86DD8DAD0}">
+  DTS:VersionBuild="35"
+  DTS:VersionGUID="{8B5DC01A-4606-4BFE-BCB1-3FBF37969151}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -27,15 +27,25 @@
           DTS:ConnectionString="Data Source=10.245.0.30;User ID=Saico_DW;Initial Catalog=UCU;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
           <EncryptedData
             Type="http://www.w3.org/2001/04/xmlenc#Element"
-            Salt="fwVwF+mKh1Y="
-            IV="ofuWZRww2KmTsc17AeKSMA==" xmlns="http://www.w3.org/2001/04/xmlenc#">
+            Salt="7TdPK7Kx37g="
+            IV="rD01C+7XAPDURYTXY4QEnA==" xmlns="http://www.w3.org/2001/04/xmlenc#">
             <EncryptionMethod
               Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" />
             <CipherData>
-              <CipherValue>ofuWZRww2KmTsc17AeKSMMUP7uVnVElD7CXpWAwn4DZfasK7+VNEco+sCjBzn7J+0ekmGno31m950TgD3TS0UNoayomfsfwLWjdX3d1Jex/iLM+garJCQoGlf1wy4RCfHVByDu4TfpkIiHekUe7HTMPDA1P/RAiE/7Y+vAWEuyW0sxd2MbZuOrjm+LE7fZfy</CipherValue>
+              <CipherValue>rD01C+7XAPDURYTXY4QEnOjTUNLAwcfoZwnS21ZCyF+ZbrwwWbmybS9gUEk+hx4F3IMW0yFPFDr2yxEtu5Gbop9VgalwOGRI/4o5SU5+UB72zPTuXDX2MDcsJk0VFSTKC6ZDkHsIdXOZLVVFzPFy46JZ+5NoSNqXv+whfh4TNyZjYTzb6WpiTo/w/h6I5GWJ</CipherValue>
             </CipherData>
           </EncryptedData>
         </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[PROD-UCUDBS10\POWERBI.DW_UCU]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{52B097B5-7787-4854-B55B-E4FADFDB6CB9}"
+      DTS:ObjectName="PROD-UCUDBS10\POWERBI.DW_UCU">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=PROD-UCUDBS10\POWERBI;Initial Catalog=DW_UCU;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -58,12 +68,12 @@
           DTS:ConnectionString="Data Source=Saico;User ID=Saico_DW;Provider=SSISOLEDB.3;Location=10.245.0.30;">
           <EncryptedData
             Type="http://www.w3.org/2001/04/xmlenc#Element"
-            Salt="SiZ4hxASFQ4="
-            IV="IAol0b+cejY17qmfyrlWPQ==" xmlns="http://www.w3.org/2001/04/xmlenc#">
+            Salt="yj/L6USAv8I="
+            IV="xRQoy1uwHWYpwyqgEOd9PA==" xmlns="http://www.w3.org/2001/04/xmlenc#">
             <EncryptionMethod
               Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" />
             <CipherData>
-              <CipherValue>IAol0b+cejY17qmfyrlWPUezaWD902NJVG3O8IyMMoz/1CAqeMhtgbUK7FTtRuRp+M7W4qOAK+M+a+Vw4W9P7pCTdGs8wmdMB6li1FzasxMTUAl/cNSnNde3Qzt3WbCO+VPJ6Zj4pyvwD9Zo9aNweqxAdEf7ENVO9PfrwRcf8V9QqeFW/WqPYiucvrYoJqRM</CipherValue>
+              <CipherValue>xRQoy1uwHWYpwyqgEOd9PJC/9981RJoi4dgB7AOJsO3tJH9vJh/t5oEHNLCeIsxKgYTm+1mnaSS+H9+43NOiAFusDQuiq9YabD1afT4NNKPvrpGkZmZurvR3lKg1MEFrAB+IgZt5ez0/4FOKU49EC2CVFufHchDTKmEP6jQ24kpE7U7GVxEDan9k5KwvbnMs</CipherValue>
             </CipherData>
           </EncryptedData>
         </DTS:ConnectionManager>
@@ -8635,8 +8645,8 @@ left join ( select FunId FunId2, HPLFch HPLFch2 , max(MovCCId) MovCCId2, max(Mov
 			and HConTipo = 1
 			and hconid in (1,2,3,57,4,6,7,8,9,11,26,27,90,52,23)
 			and movcarid not in (13)
-			group by FunId , HPLFch --, MovCCId , MovCarId
-			) liq on liq.FunId2 = hi.FunId and liq.hplfch2 = hi.hplfch --and liq.movccId2 = hi.MovCCId and liq.movcarid2 = hi.MovCarId
+			group by FunId , HPLFch, MovCCId , MovCarId
+			) liq on liq.FunId2 = hi.FunId and liq.hplfch2 = hi.hplfch and liq.movccId2 = hi.MovCCId and liq.movcarid2 = hi.MovCarId
 where hi.HPLFch &gt;= '2021-10-31'
 and hi.HConTipo = 1
 and hi.hconid in (1,2,3,57)
@@ -9421,6 +9431,23 @@ order by 5,6,12</property>
           SQLTask:SqlStatementSource="TRUNCATE TABLE [ODS_SAICO_CARGOSFU];&#xA;TRUNCATE TABLE [ODS_SAICO_CARGOSCC];&#xA;TRUNCATE TABLE [ODS_SAICO_DESIGNACION_GESTION];&#xA;TRUNCATE TABLE [ODS_SAICO_DESIGNACIONES_AULAS];&#xA;TRUNCATE TABLE [ODS_SAICO_DESIGNACIONES_PAD];&#xA;TRUNCATE TABLE [ODS_SAICO_LIQUIDACIONES];&#xA;TRUNCATE TABLE [ODS_SAICO_FUNCIONA];" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update Liq"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{67e5cf1e-13a0-4b41-a64a-fd4f1f937e4c}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update Liq"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A82CE067-87B9-4BF6-B106-C3BA919928D9}"
+          SQLTask:SqlStatementSource="-- Se actualiza el valor hora del cargo Complemento en tipo de hora GESTION que se le paga a los Decanos, por el valor hora de la liquidación correspondiente a DESIGNACION PAD.&#xA;UPDATE ODS_SAICO_LIQUIDACIONES&#xA;  SET valorhoraliq=coalesce((select top 1 valorhoraliq from ODS_SAICO_LIQUIDACIONES cc where cc.saicoid=c.saicoid and cc.fecha=c.fecha and cc.tipo_hora='PAD' ), valorhoraliq)&#xA;FROM ODS_SAICO_LIQUIDACIONES c&#xA;  WHERE c.iden_tipo=57 and c.tipo_hora='GESTION' and c.cantidad_hs=0" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
   </DTS:Executables>
   <DTS:PrecedenceConstraints>
     <DTS:PrecedenceConstraint
@@ -9471,6 +9498,14 @@ order by 5,6,12</property>
       DTS:LogicalAnd="True"
       DTS:ObjectName="Restricción 5"
       DTS:To="Package\CARGOSFU" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{8252E4A1-09FD-4310-AC73-A701D22F067D}"
+      DTS:From="Package\LIQUIDACIONES SAICO"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 6"
+      DTS:To="Package\Update Liq" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
@@ -9507,7 +9542,7 @@ order by 5,6,12</property>
         <NodeLayout
           Size="190.4,41.6"
           Id="Package\LIQUIDACIONES SAICO"
-          TopLeft="269.64836420801,415.478082018363" />
+          TopLeft="269.64836420801,416.242787911441" />
         <NodeLayout
           Size="169.6,41.6"
           Id="Package\Truncate tablas"
@@ -9606,14 +9641,14 @@ order by 5,6,12</property>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,110.206772211995"
+              EndConnector="0,110.971478105073"
               Start="0,0"
-              End="0,102.706772211995">
+              End="0,103.471478105073">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,102.706772211995" />
+                    End="0,103.471478105073" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -9651,6 +9686,32 @@ order by 5,6,12</property>
           Size="36,40"
           Id="ea1fb7c8-90ed-4f99-bc6d-5ab9aa06ddb1"
           TopLeft="1125.71430488509,5.5" />
+        <NodeLayout
+          Size="128.8,41.6"
+          Id="Package\Update Liq"
+          TopLeft="594.670340984056,417.666315918268" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 6]"
+          TopLeft="460.04836420801,437.754551914854">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="134.621976776046,0"
+              Start="0,0"
+              End="127.121976776046,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="127.121976776046,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -9658,7 +9719,7 @@ order by 5,6,12</property>
     design-time-name="Package\CARGOSCC">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="131.2,41.6"
           Id="Package\CARGOSCC\CARGOSCC"
@@ -9686,7 +9747,9 @@ order by 5,6,12</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -9717,7 +9780,7 @@ order by 5,6,12</property>
     design-time-name="Package\CARGOSFU">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="129.6,41.6"
           Id="Package\CARGOSFU\FUNCIONA"
@@ -9753,7 +9816,9 @@ order by 5,6,12</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -9775,7 +9840,9 @@ order by 5,6,12</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -9827,7 +9894,7 @@ order by 5,6,12</property>
     design-time-name="Package\DESIGNACION_GESTION">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="196.8,41.6"
           Id="Package\DESIGNACION_GESTION\DESIGNACION_GESTION"
@@ -9855,7 +9922,9 @@ order by 5,6,12</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -9886,7 +9955,7 @@ order by 5,6,12</property>
     design-time-name="Package\DESIGNACIONES AULAS">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="193.6,41.6"
           Id="Package\DESIGNACIONES AULAS\DESIGNACIONES AULAS"
@@ -9914,7 +9983,9 @@ order by 5,6,12</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -9945,7 +10016,7 @@ order by 5,6,12</property>
     design-time-name="Package\DESIGNACIONES DE PAD">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="182.4,41.6"
           Id="Package\DESIGNACIONES DE PAD\DESIGNACIONES PAD"
@@ -9973,7 +10044,9 @@ order by 5,6,12</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
