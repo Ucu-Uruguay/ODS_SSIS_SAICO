@@ -12,8 +12,8 @@
   DTS:ObjectName="Package"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="35"
-  DTS:VersionGUID="{8B5DC01A-4606-4BFE-BCB1-3FBF37969151}">
+  DTS:VersionBuild="36"
+  DTS:VersionGUID="{8BEB607E-0FD6-4901-AA16-69062B9B7442}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -27,12 +27,12 @@
           DTS:ConnectionString="Data Source=10.245.0.30;User ID=Saico_DW;Initial Catalog=UCU;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
           <EncryptedData
             Type="http://www.w3.org/2001/04/xmlenc#Element"
-            Salt="7TdPK7Kx37g="
-            IV="rD01C+7XAPDURYTXY4QEnA==" xmlns="http://www.w3.org/2001/04/xmlenc#">
+            Salt="grt7JkHC+EQ="
+            IV="FEgbAoLRo0IQq+yIHCAAxA==" xmlns="http://www.w3.org/2001/04/xmlenc#">
             <EncryptionMethod
               Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" />
             <CipherData>
-              <CipherValue>rD01C+7XAPDURYTXY4QEnOjTUNLAwcfoZwnS21ZCyF+ZbrwwWbmybS9gUEk+hx4F3IMW0yFPFDr2yxEtu5Gbop9VgalwOGRI/4o5SU5+UB72zPTuXDX2MDcsJk0VFSTKC6ZDkHsIdXOZLVVFzPFy46JZ+5NoSNqXv+whfh4TNyZjYTzb6WpiTo/w/h6I5GWJ</CipherValue>
+              <CipherValue>FEgbAoLRo0IQq+yIHCAAxIJvz0Ixn9vVFKakPwseirj/IXjYc9ZgLYrrp7tqVsV5uytsI+osXxp1nBihqAwYVkNChI1S3tbOlige3AeDdJGOUTU1IYf40XHKuN62e/oPWBQhq6UNzgS3x47eTD8ASgDSVxr3T0maJvJzJSBz0LEPDuE/tp6jrnzPW9bpnTxI</CipherValue>
             </CipherData>
           </EncryptedData>
         </DTS:ConnectionManager>
@@ -68,12 +68,12 @@
           DTS:ConnectionString="Data Source=Saico;User ID=Saico_DW;Provider=SSISOLEDB.3;Location=10.245.0.30;">
           <EncryptedData
             Type="http://www.w3.org/2001/04/xmlenc#Element"
-            Salt="yj/L6USAv8I="
-            IV="xRQoy1uwHWYpwyqgEOd9PA==" xmlns="http://www.w3.org/2001/04/xmlenc#">
+            Salt="qDJmVSUV67M="
+            IV="NUY/YrwS0HXga+4ZffFowA==" xmlns="http://www.w3.org/2001/04/xmlenc#">
             <EncryptionMethod
               Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" />
             <CipherData>
-              <CipherValue>xRQoy1uwHWYpwyqgEOd9PJC/9981RJoi4dgB7AOJsO3tJH9vJh/t5oEHNLCeIsxKgYTm+1mnaSS+H9+43NOiAFusDQuiq9YabD1afT4NNKPvrpGkZmZurvR3lKg1MEFrAB+IgZt5ez0/4FOKU49EC2CVFufHchDTKmEP6jQ24kpE7U7GVxEDan9k5KwvbnMs</CipherValue>
+              <CipherValue>NUY/YrwS0HXga+4ZffFowEw3Fjd4TDbUjdZZqHJ2dNFDRYI/ojc8SPE4co686IDGLQ8Ah/5zMDSlDoqaIxDnjvaPs7Cxpe5Vdy2LksmHgVDsiZOBxpU9cqlDGkuau19nLS1V5JUVgwRLd6mn/kit0QzHgwvX7lXNja6Jw3k5SnXmU2xeMNJfU2l96UIcixgq</CipherValue>
             </CipherData>
           </EncryptedData>
         </DTS:ConnectionManager>
@@ -9445,7 +9445,7 @@ order by 5,6,12</property>
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{A82CE067-87B9-4BF6-B106-C3BA919928D9}"
-          SQLTask:SqlStatementSource="-- Se actualiza el valor hora del cargo Complemento en tipo de hora GESTION que se le paga a los Decanos, por el valor hora de la liquidación correspondiente a DESIGNACION PAD.&#xA;UPDATE ODS_SAICO_LIQUIDACIONES&#xA;  SET valorhoraliq=coalesce((select top 1 valorhoraliq from ODS_SAICO_LIQUIDACIONES cc where cc.saicoid=c.saicoid and cc.fecha=c.fecha and cc.tipo_hora='PAD' ), valorhoraliq)&#xA;FROM ODS_SAICO_LIQUIDACIONES c&#xA;  WHERE c.iden_tipo=57 and c.tipo_hora='GESTION' and c.cantidad_hs=0" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="update l&#xA;   set valorhoraliq=max(l.ValorHoraLiq)    -- select l.fecha,l.saicoid,max(l.ValorHoraLiq)&#xA;  from ods_ucu.dbo.ods_saico_liquidaciones l   where l.tipo_hora='PAD'   --and a.saicoid=328428&#xA;  group by l.fecha, l.saicoid&#xA;  having count(*)&gt;1;&#xA;&#xA;&#xA;-- Se actualiza el valor hora del cargo Complemento en tipo de hora GESTION que se le paga a los Decanos, por el valor hora de la liquidación correspondiente a DESIGNACION PAD.&#xA;UPDATE ODS_SAICO_LIQUIDACIONES&#xA;  SET valorhoraliq=coalesce((select top 1 valorhoraliq from ODS_SAICO_LIQUIDACIONES cc where cc.saicoid=c.saicoid and cc.fecha=c.fecha and cc.tipo_hora='PAD' ), valorhoraliq)&#xA;FROM ODS_SAICO_LIQUIDACIONES c&#xA;  WHERE c.iden_tipo=57 and c.tipo_hora='GESTION' and c.cantidad_hs=0;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
@@ -9547,6 +9547,10 @@ order by 5,6,12</property>
           Size="169.6,41.6"
           Id="Package\Truncate tablas"
           TopLeft="45.3846173440614,213.310879468529" />
+        <NodeLayout
+          Size="128.8,41.6"
+          Id="Package\Update Liq"
+          TopLeft="594.670340984056,417.666315918268" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción]"
           TopLeft="202.353848763754,93.1458139946568">
@@ -9679,17 +9683,6 @@ order by 5,6,12</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <AnnotationLayout
-          Text="X"
-          ParentId="Package"
-          FontInfo="{assembly:Null}"
-          Size="36,40"
-          Id="ea1fb7c8-90ed-4f99-bc6d-5ab9aa06ddb1"
-          TopLeft="1125.71430488509,5.5" />
-        <NodeLayout
-          Size="128.8,41.6"
-          Id="Package\Update Liq"
-          TopLeft="594.670340984056,417.666315918268" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 6]"
           TopLeft="460.04836420801,437.754551914854">
@@ -9712,6 +9705,13 @@ order by 5,6,12</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <AnnotationLayout
+          Text="X"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="36,40"
+          Id="ea1fb7c8-90ed-4f99-bc6d-5ab9aa06ddb1"
+          TopLeft="1125.71430488509,5.5" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
