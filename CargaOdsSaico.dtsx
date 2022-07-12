@@ -9,11 +9,11 @@
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="15.0.2000.132"
   DTS:LocaleID="3082"
-  DTS:ObjectName="Package"
+  DTS:ObjectName="CargaOdsSaico"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="40"
-  DTS:VersionGUID="{86128FEB-5B89-4407-804A-AA685492B898}">
+  DTS:VersionBuild="42"
+  DTS:VersionGUID="{6561EAAE-FCC1-4C2F-802B-F27874B87C36}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -27,15 +27,26 @@
           DTS:ConnectionString="Data Source=10.245.0.30;User ID=Saico_DW;Initial Catalog=UCU;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
           <EncryptedData
             Type="http://www.w3.org/2001/04/xmlenc#Element"
-            Salt="+iYvuQrfW7U="
-            IV="qAY8QN9dF5bWCqFqw3id9A==" xmlns="http://www.w3.org/2001/04/xmlenc#">
+            Salt="iZnQO7kLzto="
+            IV="01qztUxEhO91NMzMdIsrTA==" xmlns="http://www.w3.org/2001/04/xmlenc#">
             <EncryptionMethod
               Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" />
             <CipherData>
-              <CipherValue>qAY8QN9dF5bWCqFqw3id9KhzHAJL0a9nKM9h89Ng4+GNOdcwkl/itG3TQkBLRXZMoC4XZS7vNTISO32cyia0oAS3sFL9/n/1m3nVTZebtcrz9qL5Ju3wu673R9I8ys23B6V5OnQjwfQKpwPyqQAMxSXP662/E6YpNHkwZwk8Lr0Gxnp6TxaGl2AAeFQIHopv</CipherValue>
+              <CipherValue>01qztUxEhO91NMzMdIsrTGk2c3p6UcxBNWSXtDF85+d3+x9+fVgaIlGqOe4dlmyaoIaDVsx04Z1TciLwCOFZ1DtRjjlnOIjOKWrx+Memzbqef4qYYAB8LFnnjfAiwL+LkxdWW2Cc4mgmo8fgXZzhu3bGPecX4XWSayCXAMCTUt4bAt1FVcA0FmybEDhq+6dl</CipherValue>
             </CipherData>
           </EncryptedData>
         </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ODS_SAICO.log]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{DF046178-4AFA-4DBA-996D-BD5637223C80}"
+      DTS:ObjectName="ODS_SAICO.log">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:FileUsageType="1"
+          DTS:ConnectionString="C:\ETL UCU\REGISTRO_ERRORES\ODS_SAICO.log" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -68,19 +79,39 @@
           DTS:ConnectionString="Data Source=Saico;User ID=Saico_DW;Provider=SSISOLEDB.3;Location=10.245.0.30;">
           <EncryptedData
             Type="http://www.w3.org/2001/04/xmlenc#Element"
-            Salt="4+kdgo9knAg="
-            IV="bzvH7ag5sciLOvSO9q8LHA==" xmlns="http://www.w3.org/2001/04/xmlenc#">
+            Salt="0MqxnwNQx5k="
+            IV="dSmdDR3XgpxHwwtXKAYAOw==" xmlns="http://www.w3.org/2001/04/xmlenc#">
             <EncryptionMethod
               Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" />
             <CipherData>
-              <CipherValue>bzvH7ag5sciLOvSO9q8LHHxE7kUes6zJk+8BZd8p3LQ7z1z8uzL0meEJ0XWs/zYnXuPKtd+k/1i4kv3XZ3QmOHzk81GFkkm7/xrNFdoAlsH+et8Ss3cxYO70NMLMxL1YwDy00xRj6fEJvWy/F/NS1B3v5dXoCMCtQDirhOhfkRik0qVu9hB1vPpzsfHUx6LK</CipherValue>
+              <CipherValue>dSmdDR3XgpxHwwtXKAYAO/XD20Xx/ecGFX73QWHvgbMbfZTwTvfun31Hz5AdqtzbUHVqDPYwwEDQGR28WBiqLX+AdrwKusB09kD8gXvj6a+WY1uVp6/JMJdG1ij9ZlDYP4FrCR8FyJwyr23MEvgEbvMKCnXf52FTQxi4Z/TY4VWVR6a7++imz2maCkiMB7Zu</CipherValue>
             </CipherData>
           </EncryptedData>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
+  <DTS:LogProviders>
+    <DTS:LogProvider
+      DTS:ConfigString="ODS_SAICO.log"
+      DTS:CreationName="Microsoft.LogProviderTextFile"
+      DTS:Description="Escribe entradas del registro sobre eventos en un archivo CSV"
+      DTS:DTSID="{DF08AF76-7704-484E-AEBC-35CE90E58381}"
+      DTS:ObjectName="Proveedor de registro SSIS para archivos de texto">
+      <DTS:ObjectData>
+        <InnerObject />
+      </DTS:ObjectData>
+    </DTS:LogProvider>
+  </DTS:LogProviders>
   <DTS:Variables />
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="1">
+    <DTS:SelectedLogProviders>
+      <DTS:SelectedLogProvider
+        DTS:InstanceID="{DF08AF76-7704-484E-AEBC-35CE90E58381}" />
+    </DTS:SelectedLogProviders>
+  </DTS:LoggingOptions>
   <DTS:Executables>
     <DTS:Executable
       DTS:refId="Package\CARGOSCC"
@@ -92,6 +123,8 @@
       DTS:ObjectName="CARGOSCC"
       DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
       <DTS:ObjectData>
         <pipeline
           version="1">
@@ -430,6 +463,8 @@
       DTS:ObjectName="CARGOSFU"
       DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
       <DTS:ObjectData>
         <pipeline
           version="1">
@@ -3085,7 +3120,7 @@
                       refId="Package\CARGOSFU\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[FunEmail]"
                       cachedCodepage="1252"
                       cachedDataType="str"
-                      cachedLength="45"
+                      cachedLength="50"
                       cachedName="FunEmail"
                       externalMetadataColumnId="Package\CARGOSFU\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[FunEmail]"
                       lineageId="Package\CARGOSFU\FUNCIONA.Outputs[Salida de origen de OLE DB].Columns[FunEmail]" />
@@ -3571,7 +3606,7 @@
                       refId="Package\CARGOSFU\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[FunEmail]"
                       codePage="1252"
                       dataType="str"
-                      length="45"
+                      length="50"
                       name="FunEmail" />
                     <externalMetadataColumn
                       refId="Package\CARGOSFU\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[FunBIncluy]"
@@ -4301,7 +4336,7 @@
                       errorOrTruncationOperation="Conversión"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\CARGOSFU\FUNCIONA.Outputs[Salida de origen de OLE DB].ExternalColumns[FunEmail]"
-                      length="45"
+                      length="50"
                       lineageId="Package\CARGOSFU\FUNCIONA.Outputs[Salida de origen de OLE DB].Columns[FunEmail]"
                       name="FunEmail"
                       truncationRowDisposition="FailComponent" />
@@ -4889,7 +4924,7 @@
                       refId="Package\CARGOSFU\FUNCIONA.Outputs[Salida de origen de OLE DB].ExternalColumns[FunEmail]"
                       codePage="1252"
                       dataType="str"
-                      length="45"
+                      length="50"
                       name="FunEmail" />
                     <externalMetadataColumn
                       refId="Package\CARGOSFU\FUNCIONA.Outputs[Salida de origen de OLE DB].ExternalColumns[FunBIncluy]"
@@ -5354,7 +5389,7 @@
                       refId="Package\CARGOSFU\FUNCIONA.Outputs[Salida de error de origen de OLE DB].Columns[FunEmail]"
                       codePage="1252"
                       dataType="str"
-                      length="45"
+                      length="50"
                       lineageId="Package\CARGOSFU\FUNCIONA.Outputs[Salida de error de origen de OLE DB].Columns[FunEmail]"
                       name="FunEmail" />
                     <outputColumn
@@ -6917,6 +6952,8 @@
       DTS:ObjectName="DESIGNACIONES AULAS"
       DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
       <DTS:ObjectData>
         <pipeline
           version="1">
@@ -7470,6 +7507,8 @@ and FunHLComEs = 25;</property>
       DTS:ObjectName="DESIGNACIONES DE PAD"
       DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
       <DTS:ObjectData>
         <pipeline
           version="1">
@@ -8021,6 +8060,8 @@ where FunCarId in (27,28,29,30,31,32);</property>
       DTS:ObjectName="DESIGNACION_GESTION"
       DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
       <DTS:ObjectData>
         <pipeline
           version="1">
@@ -8574,6 +8615,8 @@ where FunCarId in (1,2,4,5,6,7,25,26,43,46,48,49,57,191,212,217,220,238,250,142,
       DTS:ObjectName="LIQUIDACIONES SAICO"
       DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
       <DTS:ObjectData>
         <pipeline
           version="1">
@@ -9425,6 +9468,8 @@ order by 5,6,12</property>
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
       DTS:ThreadHint="0">
       <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{A82CE067-87B9-4BF6-B106-C3BA919928D9}"
@@ -9442,6 +9487,8 @@ order by 5,6,12</property>
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
       DTS:ThreadHint="0">
       <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{A82CE067-87B9-4BF6-B106-C3BA919928D9}"
@@ -9520,35 +9567,35 @@ order by 5,6,12</property>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="131.2,41.6"
+          Size="131,42"
           Id="Package\CARGOSCC"
           TopLeft="318.901110121111,73.0178286256229" />
         <NodeLayout
-          Size="131.2,41.6"
+          Size="131,42"
           Id="Package\CARGOSFU"
           TopLeft="71.1538487637538,71.6737993636907" />
         <NodeLayout
-          Size="196.8,41.6"
+          Size="197,42"
           Id="Package\DESIGNACION_GESTION"
           TopLeft="522.527488998825,80.0160482906799" />
         <NodeLayout
-          Size="193.6,41.6"
+          Size="194,42"
           Id="Package\DESIGNACIONES AULAS"
           TopLeft="525.879134890856,257.659546441074" />
         <NodeLayout
-          Size="198.4,41.6"
+          Size="198,42"
           Id="Package\DESIGNACIONES DE PAD"
           TopLeft="266.153852084584,263.671309806368" />
         <NodeLayout
-          Size="190.4,41.6"
+          Size="190,42"
           Id="Package\LIQUIDACIONES SAICO"
           TopLeft="269.64836420801,416.242787911441" />
         <NodeLayout
-          Size="169.6,41.6"
+          Size="170,42"
           Id="Package\Truncate tablas"
           TopLeft="45.3846173440614,213.310879468529" />
         <NodeLayout
-          Size="128.8,41.6"
+          Size="129,42"
           Id="Package\Update Liq"
           TopLeft="594.670340984056,417.666315918268" />
         <EdgeLayout
@@ -9780,21 +9827,21 @@ order by 5,6,12</property>
     design-time-name="Package\CARGOSFU">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="129.6,41.6"
+          Size="130,42"
           Id="Package\CARGOSFU\FUNCIONA"
           TopLeft="113.692311825837,231.69697369579" />
         <NodeLayout
-          Size="168,41.6"
+          Size="168,42"
           Id="Package\CARGOSFU\Destino de OLE DB"
           TopLeft="433,238" />
         <NodeLayout
-          Size="132,41.6"
+          Size="132,42"
           Id="Package\CARGOSFU\CARGOSFU"
           TopLeft="112.692311825837,117.757579144477" />
         <NodeLayout
-          Size="193.6,41.6"
+          Size="194,42"
           Id="Package\CARGOSFU\ODS_SAICO_CARGOSFU"
           TopLeft="418.615399823387,110.69697369579" />
         <EdgeLayout
@@ -9816,9 +9863,7 @@ order by 5,6,12</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -9840,9 +9885,7 @@ order by 5,6,12</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
